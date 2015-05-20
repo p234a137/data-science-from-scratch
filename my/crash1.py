@@ -243,3 +243,43 @@ x = sorted([-4,1,-2,3], key = abs, reverse = True) # is [-4,3,-2,1]
 wc = sorted(word_counts.items(), key = lambda(word,count): count, reverse = True)
 
 # List Comprehensions
+even_numbers = [x for x in range(5) if x%2==0]
+squares = [x*x for x in range(5)]
+even_squares = [x*x for x in even_numbers]
+print even_numbers, squares, even_squares
+# similar for dictionaries or sets
+square_dict = {x : x*x for x in range(5)}
+square_set = {x*x for x in [1,-1]}
+print square_dict, square_set
+# user underscore as variable if the value from the list is not needed
+zeroes = [0 for _ in even_numbers]
+print zeroes
+# multiple for loops
+pairs = [(x,y)
+         for x in range(10)
+         for y in range(10)] # 100 pairs
+print len(pairs), pairs
+increasing_pairs = [(x, y)
+                    for x in range(10)
+                    for y in range(x+1, 10)] # later for can use  results of earlier one
+print len(increasing_pairs), increasing_pairs
+
+
+
+# Generators and Iterators
+# use yield instead of range, in order to create elements as needed, without
+# creating very long arrays
+def lazy_range(n):
+    """
+    a lazy version of range
+    :param n: number of elements to create range
+    :return: a lazy iterator
+    """
+    i = 0
+    while i < n:
+        yield i
+        i += 1
+# consume yielded values one at a time until none are left
+for i in lazy_range(10):
+    print i
+# xrange is a lazy version of range
