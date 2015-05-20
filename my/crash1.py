@@ -162,3 +162,84 @@ tweet_values = tweet.values()
 tweet_items = tweet.items() # list of (key, value) tuples
 
 # defaultdict
+document = ["just", "a", "list", "of", "words"]
+# different ways of counting, 1
+word_counts = {}
+for word in document:
+    previous_count = word_counts.get(word, 0) # behave gracefully for missing keys
+    word_counts[word] = previous_count + 1
+# better solution with defaultdict
+from collections import defaultdict
+word_counts = defaultdict(int) # int() produces 0
+for word in document:
+    word_counts[word] += 1
+print word_counts
+
+# Counter
+from collections import Counter
+c = Counter([0, 1, 2, 0]) # c is like a dictionary
+word_counts = Counter(document)
+# print the 10 most common words and their counts
+for word, count in word_counts.most_common(10):
+    print word, count
+
+# Sets
+s = set()
+s.add(1) # s is now {1}
+s.add(2) # s is now {1, 2}
+s.add(2) # s is still {1, 2}
+x = len(s) # equals 2
+y = 2 in s # True
+z = 3 in s # False
+print x, y, z
+# can use set to find distinct items in a list and for very fast search 'in' the set
+
+# Control Flow
+if 1 > 2:
+    message = "if only oone were greater than two . . ."
+elif 1 > 3:
+    message = "elif stands for 'else if'"
+else:
+    message = "when all else fails use else (if you want to)"
+# ternary if-then-else
+x=20
+parity = "even" if x%2 == 0 else "odd"
+# python while loop
+x = 0
+while x < 10:
+    print x, " is less than 10"
+    x += 1
+# for + in
+for x in range(10):
+    if x == 3:
+        continue # skip to next iteration
+    if x == 5:
+        break; # quit loop entirely
+    print x
+
+# Truthiness
+one_is_less_than_two  = 1 < 2 # True
+true_equals_false = True == False # False
+print one_is_less_than_two, true_equals_false
+# None is similar to null in other languages
+x = None
+print x == None # non-Pythonic way
+print x is None # Pythonic way
+
+# Falsy / Truthy
+all([True, 1, { 3 }]) # True
+all([True, 1, {}])    # False, {} is falsy
+any([True, 1, {}])    # True, True is truthy
+all([]) # True, no falsy elements in the list
+any([]) # False, no truthy elements in the list
+
+# Sorting
+x = [4, 1, 2, 3]
+y = sorted(x) # x unchanged
+x.sort() # x changed
+# sort the list by absolute value from largest to smallest
+x = sorted([-4,1,-2,3], key = abs, reverse = True) # is [-4,3,-2,1]
+# sort the word and counts from highest count to lowest
+wc = sorted(word_counts.items(), key = lambda(word,count): count, reverse = True)
+
+# List Comprehensions
