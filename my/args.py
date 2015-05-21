@@ -34,6 +34,7 @@ print other_way_magic(*x_y_list, **z_dict)
 def doubler_correct(f):
     """
     works no matter what kind of input f expects
+
     :param f: function
     :return:double the value of f
     """
