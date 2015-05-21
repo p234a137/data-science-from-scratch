@@ -283,3 +283,8 @@ def lazy_range(n):
 for i in lazy_range(10):
     print i
 # xrange is a lazy version of range
+
+# lazy generation using comprehensions wrapped in parantheses
+lazy_events_below_20 = (i for i in lazy_range(20) if i % 2 == 0)
+
+# in dict, user iteritems() instead of items() in order to get lazy yield of key-value pairs
